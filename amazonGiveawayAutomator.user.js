@@ -1,10 +1,10 @@
 // This is a Tamper Monkey script and must be run using a Tamper Monkey - compatible browser.
 //
 // ==UserScript==
-// @name         Amazon Giveaway Bot
-// @version      1.0
-// @author       Ty Gooch
-// @updateURL    https://github.com/TyGooch/amazon-giveaway-automator/raw/master/amazonGiveawayAutomator.user.js
+// @name         Amazon Giveaway Bot - Ryan Montgomery
+// @version      1.5
+// @author       Ryan Montgomery
+// @updateURL    https://github.com/ryanrohypnol/giveaway-bot-amazon/raw/master/amazonGiveawayAutomator.user.js
 // @description  Automates Amazon giveaway entries
 // @match        https://www.amazon.com/ga/*
 // @match        https://www.amazon.com/ap/signin*
@@ -15,6 +15,7 @@
 // @grant        GM_xmlhttpRequest
 // @grant        unsafeWindow
 // @run-at document-start
+// @namespace https://greasyfork.org/users/230049
 // ==/UserScript==
 
 
