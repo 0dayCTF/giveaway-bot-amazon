@@ -29,7 +29,7 @@
   		"	<h3 class=\"textColor\" style=\"padding-top: 0; margin-top: 0;\">Amazon Giveaway Automator</h3>\n" +
   		"\n" +
   		"		<div><span for=\"allowVideos\">Allow Videos: </span><input id=\"allowVideos\" name=\"allowVideos\" type=\"checkbox\"></input></div>\n" +
-  		"		<div><label for=\"userEmail\">Enter your email address to receive an email when you win:</label><input id=\"userEmail\" name=\"userEmail\" type=\"text\" placeholdertype=\"Enter your email here\"></input></div>\n" +
+  		"		<div><label for=\"userEmail\">Enter your email address to receive an email when you win:</label><input id=\"userEmail\" name=\"userEmail\" type=\"text\" placeholdertype=\"Enter your email here\"></input><label>Follow me on instagram @0day</label></div>\n" +
   		"		<span id=\"numEntered\"></span>\n" +
   		"		<span id=\"currentSessionGiveawaysEntered\"></span>\n" +
   		"		<button id=\"run\">Start Automator (opens in new window)</button>\n" +
@@ -114,6 +114,7 @@
     var isSignIn = window.location.href.includes("https://www.amazon.com/ap/signin")
     var isMainPage = window.location.href.includes("https://www.amazon.com/ga/giveaways")
     var isGiveaway = window.location.href.indexOf('ga/p') !== -1;
+    var isSignInpwd = window.location.href.includes("https://www.amazon.com/ap/signin")
 
     function getGiveaways() {
       var giveawayItems = document.querySelectorAll(".giveawayItemContainer a");
@@ -179,7 +180,7 @@
       let emailed = false
       setInterval(() => {
         if(document.getElementById('title')){
-          if(document.getElementById('title').innerHTML.includes('won!')){
+          if(document.getElementById('title').innerHTML.includes('won')){
             // setInterval( () => GM_notification("You just won an Amazon giveaway!", "Amazon Giveway Automator"), 5000)
             if(!emailed){
               emailed = true
@@ -209,6 +210,9 @@
         if(isSignIn){
           setInterval(() => {document.querySelector(".a-row.a-color-base").click()}, 1000)
         }
+      if(isSignInpwd){
+          setInterval(() => {document.querySelector(".a-button-input").click()}, 1200)
+              }
 
         if(isMainPage){
           GM_setValue("mainPageUrl", window.location.href)
@@ -225,11 +229,11 @@
 
         if(isGiveaway){
           // if giveaway has already been entered, continue on to next giveaway in queue
-          if(document.querySelector("#giveaway-ended-header") || (document.getElementById('title') && !document.getElementById('title').innerText.includes('won'))){
+          if(document.querySelector("#giveaway-ended-header") || (document.getElementById('title') && !document.getElementById('title').innerText.includes('confirmation'))){
             processGiveaways()
           }
-          // if giveaway has follow requirement, don't enter
-          else if(document.getElementById("ts_en_fo_follow-announce")){
+          // if giveaway has follow requirement or is having an error, don't enter
+          else if(document.getElementById("ts_en_fo_follow-announce") || (document.querySelector("#giveaway-digital-eni-alert"))){
             processGiveaways()
           }
           // handle giveaways with video requirement
