@@ -2,7 +2,7 @@
 //
 // ==UserScript==
 // @name         Amazon Giveaway Bot - Ryan Montgomery
-// @version      1.5
+// @version      1.6
 // @author       Ryan Montgomery
 // @updateURL    https://github.com/ryanrohypnol/giveaway-bot-amazon/raw/master/amazonGiveawayAutomator.user.js
 // @description  Automates Amazon giveaway entries
@@ -179,7 +179,7 @@
       let emailed = false
       setInterval(() => {
         if(document.getElementById('title')){
-          if(document.getElementById('title').innerHTML.includes('won')){
+          if(document.getElementById('title').innerHTML.includes('won!')){
             // setInterval( () => GM_notification("You just won an Amazon giveaway!", "Amazon Giveway Automator"), 5000)
             if(!emailed){
               emailed = true
